@@ -1,0 +1,6 @@
+	<div class='well'>
+		<h4><%= link_to post.title, post_path(post) %></h4>
+		<p>url: <%= post.url%></p>
+		<p>Description: <%= post.description %></p>
+		<p><small>Created by <%= post.user.username %> at <%= post.created_at %></small></p>
+	</div>
