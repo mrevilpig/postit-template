@@ -1,0 +1,27 @@
+<h1>Edit this post</h1>
+
+<% if @post.errors.any? %>
+	<div>
+		<p><b>There are some errors</b></p>
+		<ul>
+			<% @post.errors.full_messages.each do |msg| %>
+			<li>
+				<%= msg %>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<%= form_for @post do |f|%>
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+	<br/>
+	<%= f.label :url %>
+	<%= f.text_field :url %>
+	<br/>
+	<%= f.label :description %>
+	<%= f.text_area :description %>
+	<br/>
+	<%= f.submit "Confirm", class: "btn btn-primary" %>
+<% end %>

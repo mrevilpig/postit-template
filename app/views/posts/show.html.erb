@@ -1,0 +1,8 @@
+<h1>Show Post<hr/></h1>
+
+<h3><%= @post.title%></h3>
+<p><%= @post.description%></p>
+<p><small>Created by <%= @post.user.username %></small></p>
+<%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" %>
+ 
+<%= link_to "Go back to all posts", posts_path, class: "btn btn_primary" %>
