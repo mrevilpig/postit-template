@@ -1,20 +1,7 @@
 <h1>New Category</h1>
 <hr/>
 
-<% if @category.errors.any? %>
-	<div class='row'>
-		<div class = 'alert alert-error span8'>
-			<p><b>There are some errors</b></p>
-			<ul>
-				<% @category.errors.full_messages.each do |msg| %>
-				<li>
-					<%= msg %>
-				</li>
-				<% end %>
-			</ul>
-		</div>
-	</div>
-<% end %>
+<%= render 'posts/error', obj: @category %>
 
 <%= form_for @category do |f|%>
 	<div class='well'>

@@ -1,8 +1,27 @@
 <h1>Show Post<hr/></h1>
 
-<h3><%= @post.title%></h3>
-<p><%= @post.description%></p>
-<p><small>Created by <%= @post.user.username %></small></p>
+<%= render 'post', post: @post%>
+
+<div>
 <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" %>
- 
 <%= link_to "Go back to all posts", posts_path, class: "btn btn_primary" %>
+<hr/>
+</div>
+
+<div>
+	<%= form_for [@post, @comment] do |f| %>
+		<%= render 'posts/error', obj: @comment %>
+		<%= f.label :body, 'Create comment' %>
+		<%= f.text_area :body, rows: 3, class: 'span4' %>
+			<br/>
+			<%= f.submit 'Create comment', class: 'btn btn-primary' %>
+	<% end %>
+</div>
+
+<h5>All comments</h5>
+<% @post.comments.each do |c| %>
+	<div class="well sapn8">
+		<em>"<%= c.body %>"</em>
+	</div>
+<% end %>
+<hr/>
