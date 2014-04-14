@@ -1,6 +1,7 @@
-<h1>Show Post<hr/></h1>
+<h1>Show Post</h1>
+<hr/>
 
-<%= render 'post', post: @post%>
+<%= render 'posts/post', post: @post%>
 
 <div>
 <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" %>
