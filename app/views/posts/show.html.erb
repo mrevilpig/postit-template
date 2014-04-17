@@ -4,18 +4,22 @@
 <%= render 'posts/post', post: @post%>
 
 <div>
-<%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" %>
-<%= link_to "Go back to all posts", posts_path, class: "btn btn_primary" %>
+	<% if logged_in? %>
+		<%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" %>
+	<% end %>
+	<%= link_to "Go back to all posts", posts_path, class: "btn btn-primary" %>
 <hr/>
 </div>
 
 <div>
-	<%= form_for [@post, @comment] do |f| %>
-		<%= render 'posts/error', obj: @comment %>
-		<%= f.label :body, 'Create comment' %>
-		<%= f.text_area :body, rows: 3, class: 'span4' %>
-			<br/>
-			<%= f.submit 'Create comment', class: 'btn btn-primary' %>
+	<% if logged_in? %>
+		<%= form_for [@post, @comment] do |f| %>
+			<%= render 'posts/error', obj: @comment %>
+			<%= f.label :body, 'Create comment' %>
+			<%= f.text_area :body, rows: 3, class: 'span4' %>
+				<br/>
+				<%= f.submit 'Create comment', class: 'btn btn-primary' %>
+		<% end %>
 	<% end %>
 </div>
 

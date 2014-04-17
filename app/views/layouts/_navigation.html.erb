@@ -4,10 +4,12 @@
   </li>
 
   <li>
-    <%= link_to "New Post", new_post_path %>
+    <%= link_to 'link', '' %>
   </li>
+</ul>
 
-  <li class='dropdown'>
+<div class="nav_item">
+  <div class='dropdown btn'>
     <%= link_to '#', 'data-toggle' => 'dropdown' do%>
     <!-- class: 'btn btn-small dropdown_toggle' -->
       Categories <span class='caret'></span>
@@ -16,20 +18,31 @@
       <% Category.all.each do |c| %>
         <li><%= link_to c.name, category_path(c)%></li>
       <% end %>
-      <li class='divider'></li>
-      <li>
-        <%= link_to(new_category_path) do%>
-          <i class='icon-plus'></i>
-          New Category
+      <% if logged_in? %>
+        <li class='divider'></li>
+        <li>
+          <%= link_to(new_category_path) do%>
+            <i class='icon-plus'></i>
+            New Category
+          <% end %>
         <% end %>
       </li>
     </ul>
-  </li>
+  </div>
+</div>
 
-  <li>
-    <%= link_to 'Register', new_user_path %>
-  </li>
-  <li>
-    <%= link_to 'link', '' %>
-  </li>
-</ul>
+<% if logged_in? %>
+  <div class="nav_item btn">
+    <%= link_to "New Post", new_post_path %>
+  </div>
+  <div class="nav_item btn btn-danger">
+    <%= link_to 'Log out', logout_path %>
+  </div>
+<% else %>
+  <div class="nav_item btn">
+    <%= link_to 'Register', register_path %>
+  </div>
+  <div class="nav_item btn btn-success">
+    <%= link_to 'Log in', login_path %>
+  </div>
+<% end %>
