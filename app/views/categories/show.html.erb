@@ -1,4 +1,4 @@
-<h1>Show Category: <%= @category.name%></h1>
+<h4>Show Category: <%= @category.name%></h4>
 
 <% @category.posts.each do |post|%>
 	<%= render '/posts/post', post: post%>
