@@ -6,13 +6,12 @@
   <li>
     <%= link_to 'link', '' %>
   </li>
-</ul>
 
-<div class="nav_item">
-  <div class='dropdown btn'>
-    <%= link_to '#', 'data-toggle' => 'dropdown' do%>
-    <!-- class: 'btn btn-small dropdown_toggle' -->
+  <li class='dropdown'>
+    <%= link_to '#', 'data-toggle' => 'dropdown', class: 'btn-link' do%>
+    <button class='btn'><!-- class: 'btn btn-small dropdown_toggle' -->
       Categories <span class='caret'></span>
+    </button>
     <% end %>
     <ul class="dropdown-menu">
       <% Category.all.each do |c| %>
@@ -28,21 +27,69 @@
         <% end %>
       </li>
     </ul>
-  </div>
-</div>
+  </li>
 
-<% if logged_in? %>
-  <div class="nav_item btn">
-    <%= link_to "New Post", new_post_path %>
-  </div>
-  <div class="nav_item btn btn-danger">
-    <%= link_to 'Log out', logout_path %>
-  </div>
-<% else %>
-  <div class="nav_item btn">
-    <%= link_to 'Register', register_path %>
-  </div>
-  <div class="nav_item btn btn-success">
-    <%= link_to 'Log in', login_path %>
-  </div>
-<% end %>
+  <% if logged_in? %>
+    <li>
+      <%= link_to new_post_path, class: "btn-link" do %>
+        <button class="btn">
+          New Post
+        </button>
+      <% end %>
+    </li>
+
+    <li class='dropdown'>
+      <%= link_to '#', 'data-toggle' => 'dropdown', class: 'btn-link' do%>
+        <button class='btn'>
+          <%= current_user.username %><span class='caret'></span>
+        </button>
+      <% end %>
+      <ul class='dropdown-menu'>
+        <li>
+          <%= link_to edit_user_path(current_user) do %>
+            <i class='icon-pencil'></i>
+            Edit profile
+          <% end %>
+        </li>
+        <li>
+          <%= link_to user_path(current_user) do %>
+            <i class='icon-user'></i>
+            Show profile
+          <% end %>
+        </li>
+        <li>
+          <%= link_to logout_path do %>
+            <i class='icon-circle-arrow-left'></i>
+            Log out
+          <% end %>
+        </li>
+      </ul>
+    </li>
+    <!--<li>
+      <%= link_to logout_path, class: 'btn-link' do %>
+        <button class="btn">
+          Log out
+        </button>
+      <% end %>
+    </li>-->
+  <% else %>
+    
+    <li>
+      <%= link_to register_path, class: "btn-link" do%>
+        <button class="btn">
+          Register
+        </button>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to login_path, class: 'btn-link' do %>
+        <button class="btn">
+          Login
+        </button>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+

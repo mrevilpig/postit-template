@@ -24,9 +24,7 @@
 </div>
 
 <h5>All comments</h5>
-<% @post.comments.each do |c| %>
-	<div class="well sapn8">
-		<em>"<%= c.body %>"</em>
-	</div>
+<% @post.comments.each do |comment| %>
+	<%= render 'comments/comment', comment: comment, show_link: false %>
 <% end %>
 <hr/>

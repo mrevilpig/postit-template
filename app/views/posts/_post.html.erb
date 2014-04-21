@@ -16,6 +16,10 @@
 	<div class = 'control-group'>
 		<%= post.description %>
 	</div>
+
+	<%= link_to "#{post.comments.size} comments", post_path(post) %>
+
 	<hr/>
+
 	<p><small>Created by <%= post.user.username %> at <%= post.created_at %></small></p>
 </div>

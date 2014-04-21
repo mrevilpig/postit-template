@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
   		redirect_to root_path
   	end
   end
+
+  def require_same_user
+  	if current_user != @user
+  		flash[:error] = 'You cant do that'
+  		redirect_to root_path
+  	end
+  end
 end
