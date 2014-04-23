@@ -24,7 +24,19 @@
 </div>
 
 <h5>All comments</h5>
+<hr/>
 <% @post.comments.each do |comment| %>
+	<div class='span0 well text-center'>
+	<%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post' do %>
+		<i class='icon-arrow-up'></i>
+	<% end %>
+	<br/>
+	<%= comment.votes.size %> votes
+	<br/>
+	<%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post' do %>
+		<i class='icon-arrow-down'></i>
+	<% end %>
+	</div>
+
 	<%= render 'comments/comment', comment: comment, show_link: false %>
 <% end %>
-<hr/>

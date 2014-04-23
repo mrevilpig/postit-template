@@ -1,9 +1,10 @@
 <% show_link ||= false %>
 
-<div class='well'>
+<div class='well span8'>
 	<%= comment.body %>
 	<% if show_link %>
 		on <%= link_to comment.post.title, post_path(comment.post) %>
 	<% end %>
 	<p><small>Created by <%= link_to comment.user.username, user_path(comment.user) %> at <%= comment.created_at %></small>
+	</p>
 </div>
