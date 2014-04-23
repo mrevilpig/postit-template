@@ -42,7 +42,7 @@ class PostsController < ApplicationController
   def vote
     @vote = Vote.create(voteable: @post, user: current_user, vote: params[:vote])
 
-    if vote.true
+    if @vote.valid?
       flash[:notice] = "Your vote was counted."
     else
       flash[:error] = "Your vote was not counted"

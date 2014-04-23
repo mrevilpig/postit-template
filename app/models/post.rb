@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
 	validates :url, presence: true
 
 	def total_votes
-		return total_votes = true_votes - false_votes
+		true_votes - false_votes
 	end
 
   def true_votes

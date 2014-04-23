@@ -5,8 +5,8 @@ class Comment < ActiveRecord::Base
 
 	validates :body, presence: true
 
-    def total_votes
-    return total_votes = true_votes - false_votes
+  def total_votes
+    true_votes - false_votes
   end
 
   def true_votes
