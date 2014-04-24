@@ -4,7 +4,7 @@
 <%= render 'posts/post', post: @post%>
 
 <div>
-	<% if logged_in? %>
+	<% if logged_in? && is_user? %>
 		<%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" %>
 	<% end %>
 	<%= link_to "Go back to all posts", posts_path, class: "btn btn-primary" %>
