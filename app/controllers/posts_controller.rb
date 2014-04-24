@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
 	before_action :set_post, only: [:show, :edit, :update, :vote]
+  before_action :set_user, only: [:edit, :update]
   before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update]
 
   def index
   	@posts = Post.all.sort_by{|x| x.total_votes}.reverse
@@ -59,5 +61,9 @@ class PostsController < ApplicationController
 
   def set_post
   	@post = Post.find(params[:id])
+  end
+
+  def set_user
+    @user = @post.user
   end
 end

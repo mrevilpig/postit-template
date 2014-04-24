@@ -29,6 +29,6 @@
 		</div>
 		<%= link_to "#{post.comments.size} comments", post_path(post) %>
 		<hr/>
-		<p><small>Created by <%= post.user.username %> at <%= post.created_at %></small></p>
+		<p><small>Created by <%= link_to post.user.username, user_path(post.user) %> at <%= post.created_at %></small></p>
 	</div>
 </div>

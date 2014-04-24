@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :logged_in?, :is_user?
+  helper_method :current_user, :logged_in?, :is_same_user?
 
   def current_user
   	@current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   	!!current_user
   end
 
-  def is_user?
+  def is_same_user?
     post = Post.find(params[:id])
     !!(current_user == post.user)
   end
