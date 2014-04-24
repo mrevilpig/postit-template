@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     if vote.save
       flash[:notice] = "Your vote was counted."
     else
-      flash[:error] = "Your vote was not counted"
+      flash[:error] = "You have already voted on this comment"
     end
 
 		redirect_to :back
