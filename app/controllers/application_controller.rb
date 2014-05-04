@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_same_user?
-    post = Post.find(params[:id])
+    post = Post.find_by slug: params[:id]
     !!(current_user == post.user)
   end
 

@@ -42,15 +42,27 @@ class PostsController < ApplicationController
   end
 
   def vote
-    vote = Vote.new(voteable: @post, user: current_user, vote: params[:vote])
+    @vote = Vote.new(voteable: @post, user: current_user, vote: params[:vote])
 
-    if vote.save
-      flash[:notice] = "Your vote was counted."
-    else
-      flash[:error] = "You have already voted on \"#{@post.title}\""
+    respond_to do |format|
+      format.html do
+        if @vote.save
+          flash[:notice] = "notice: 'Your vote is counted"
+          redirect_to :back
+        else
+          flash[:error] = 'You can only vote once'
+          redirect_to :back
+        end
+      end
+
+      format.js do
+        if @vote.save
+          format.js
+        else
+          render js: "alert('You can only vote once')"
+        end
+      end
     end
-
-    redirect_to :back
   end
 
   private
@@ -60,7 +72,7 @@ class PostsController < ApplicationController
   end
 
   def set_post
-  	@post = Post.find(params[:id])
+  	@post = Post.find_by slug: params[:id]
   end
 
   def set_user
